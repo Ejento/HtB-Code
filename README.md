@@ -54,9 +54,15 @@ While exploring and experimenting, I thought of using `globals()`, Python's buil
 The most valuable information that we noted was the following:
 
 ```json
-origin='/home/app-production/app/app.py
-'db': <SQLAlchemy sqlite:////home/app-production/app/instance/database.db>, 'User': <class 'app.User'>, 'Code': <class 'app.Code'>
-'run_code': <function run_code at 0x7fa202956e50>, 'load_code': <function load_code at 0x7fa2027d1040>, 'save_code': <function save_code at 0x7fa2027d11f0\, 'codes': <function codes at 0x7fa2027d13a0>
+origin='/home/app-production/app/app.py'
+
+'db': <SQLAlchemy sqlite:////home/app-production/app/instance/database.db>,
+'User': <class 'app.User'>,
+'Code': <class 'app.Code'>
+
+'run_code': <function run_code at 0x7fa202956e50>,
+'load_code': <function load_code at 0x7fa2027d1040>,
+'save_code': <function save_code at 0x7fa2027d11f0\, 'codes': <function codes at 0x7fa2027d13a>
 ```
 
 Let's analyze the above information in some bullet points.
