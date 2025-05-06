@@ -84,12 +84,12 @@ Another approach was to find what subclasses were available, to try to manipulat
 
 Breaking the above statement in small parts:
 ```text
-* 1: This is an integer literal.
-* .__class__: This attribute returns the class of the integer, which is <class 'int'>.
-* .__bases__: This attribute returns a tuple of the base classes (superclasses) of <class 'int'>. For int, the base class is <class 'object'>.
-* [0]: This accesses the first element of the tuple returned by .__bases__, which is <class 'object'>. Remember, that was a tuple.
-* .__subclasses__(): This method returns a list of all subclasses of <class 'object'>.
-* print(...): This function prints the list of subclasses of <class 'object'>.
+1: This is an integer literal.
+.__class__: This attribute returns the class of the integer, which is <class 'int'>.
+.__bases__: This attribute returns a tuple of the base classes (superclasses) of <class 'int'>. For int, the base class is <class 'object'>.
+[0]: This accesses the first element of the tuple returned by .__bases__, which is <class 'object'>. Remember, that was a tuple.
+.__subclasses__(): This method returns a list of all subclasses of <class 'object'>.
+print(...): This function prints the list of subclasses of <class 'object'>.
 ```
 
 The command printed all subclasses of the base `class object` in a list.
